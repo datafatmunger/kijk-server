@@ -18,6 +18,8 @@ app.configure('development', function(){
 });
 
 app.get('/listeners', function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.json(listeners);
 });
 
