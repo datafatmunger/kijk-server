@@ -7,7 +7,7 @@ var cleanup = function() {
   var trimmed = {};
   for(var guid in listeners) {
     var listener = listeners[guid];
-    if(new Date().getTime() - listener.ts.getTime() < 1000*10))
+    if(new Date().getTime() - listener.ts.getTime() < 1000*10)
       trimmed[guid] = listener;
     else
       console.log('CLEANED: ' + guid);
