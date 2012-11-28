@@ -27,7 +27,7 @@ app.post('/listeners', function(req, res) {
   var obj = req.body;
   if(!listeners[obj.guid]) listeners[obj.guid] = { tracks: {} };
   listeners[obj.guid].tracks[obj.trackId] = obj;
-  res.send(200, 'success');
+  res.end();
 });
 
 app.get('/', function(req, res) {
