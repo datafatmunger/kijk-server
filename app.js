@@ -41,7 +41,7 @@ app.post('/listeners', function(req, res) {
   if(!listeners[obj.guid]) listeners[obj.guid] = { tracks: {} };
   listeners[obj.guid].tracks[obj.trackId] = obj;
   listeners[obj.guid].ts = new Date();
-  cleanup();
+  //cleanup();
   res.send(200);
 });
 
