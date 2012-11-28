@@ -3,6 +3,18 @@
 
 var listeners = {};
 
+var cleanup = function() {
+  var trimmed = {};
+  for(var guid in listeners) {
+    var listener = listeners[guid];
+    if(new Date().getTime() - listener.ts.getTime() < 1000*10))
+      trimmed[guid] = listener;
+    else
+      console.log('CLEANED: ' + guid);
+  }
+  listeners = trimmed;
+};
+
  app.configure(function(){
   app.set('port', process.env.PORT || 80);
   app.use(express.favicon());
@@ -27,7 +39,9 @@ app.post('/listeners', function(req, res) {
   var obj = req.body;
   if(!listeners[obj.guid]) listeners[obj.guid] = { tracks: {} };
   listeners[obj.guid].tracks[obj.trackId] = obj;
-  res.end();
+  listeners[obj.guid].ts = new Date();
+  cleanup();
+  res.send(200);
 });
 
 app.get('/', function(req, res) {
