@@ -36,6 +36,7 @@ app.get('/listeners', function(req, res) {
 });
 
 app.post('/listeners', function(req, res) {
+  console.log(listeners.length);
   var obj = req.body;
   if(!listeners[obj.guid]) listeners[obj.guid] = { tracks: {} };
   listeners[obj.guid].tracks[obj.trackId] = obj;
